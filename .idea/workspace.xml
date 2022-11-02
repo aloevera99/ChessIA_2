@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="765a8f3e-bd55-40da-b58f-a39b3746cdeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +43,7 @@
       <updated>1667246099574</updated>
       <workItem from="1667246100899" duration="453000" />
       <workItem from="1667411601219" duration="65000" />
-      <workItem from="1667411737921" duration="54000" />
+      <workItem from="1667411737921" duration="1498000" />
     </task>
     <servers />
   </component>
@@ -56,7 +55,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
