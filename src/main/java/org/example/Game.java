@@ -1,4 +1,6 @@
-import com.github.bhlangonijr.chesslib;
+package org.example;
+
+import com.github.bhlangonijr.chesslib.*;
 import java.util.*;
 
 class Game {
