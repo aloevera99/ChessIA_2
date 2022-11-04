@@ -62,6 +62,54 @@ class Minimax {
         return moves.get(0);
     }
 
+    int evaluatePosition(Board board){
+        /*
+        Etudie le score potentiel de chacun des joueurs selon les pièces qu'il prend à l'autre
+        En se focalisant sur le score de l'IA (les whites), s'il prend une pièce noire son score augmente
+        S'il les blacks prennent des pièces blanches, le score de l'IA diminue
+         */
+        int whiteScore = 0;
 
+        //si je suis sur une pièce
+        //je récupère la case du board associée
+        //puis le type de la pièce qui est sur la case
+        Square square = Square.A1 ; // ca c'est pas bon, mais il faudra faire un boucle for qui parcourt toute la grille
+        Piece piece = board.getPiece(square);
+        PieceType pieceType = piece.getPieceType();
+        switch (pieceType){
+            case PAWN :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 10;
+                else
+                    whiteScore -= 10;
+            case KNIGHT :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 40;
+                else
+                    whiteScore -= 40;
+            case BISHOP :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 40;
+                else
+                    whiteScore -= 40;
+            case ROOK :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 60;
+                else
+                    whiteScore -= 60;
+            case QUEEN :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 100;
+                else
+                    whiteScore -= 100;
+            case KING :
+                if(piece.getPieceSide() == Side.BLACK)
+                    whiteScore += 1000;
+                else
+                    whiteScore -= 1000;
+        }
+
+        return whiteScore;
+    }
 
 }
