@@ -22,6 +22,7 @@ class Minimax {
 
         Move bestMove;
         int bestMoveScore;
+        //créer tableau de possible boards vide
 
         //1// get legal moves of the current board --> la fonction renvoit les legal moves pour touuutes les pièces
 
@@ -29,24 +30,27 @@ class Minimax {
         //print the chessboard in a human-readable form
         System.out.println(board.toString());
 
-        //on crée un board des possible à t+1 en clonant d'abord board à t
-        Board possible = board.clone();
-
         //on récupère les legal moves du board à t
-        List<Move> moves = possible.legalMoves();
+        List<Move> moves = board.legalMoves();
         System.out.println("Legal moves: " + moves);
 
         //on applique tous les legal moves au board possible qui devient board t+1
         for (Move move : moves) {
-            System.out.println("side of the piece moving :");
-            System.out.println(possible.getPiece(move.getTo()).getPieceSide());
-            System.out.println("piece moving is : " + possible.getPiece(move.getFrom()));
+            System.out.println("piece moving is : " + board.getPiece(move.getFrom()));
+/*
 
-            possible.doMove(move);
+            System.out.println("side of the piece moving :");
+            System.out.println(board.getPiece(move.getTo()).getPieceSide());*/
+
+            board.doMove(move);
+            //créer le board avec cette disposition
+            //le stocker dans tableau de boards
+            //UNDOOO le move
+            board.undoMove();
         }
 
         //print the chessboard in a human-readable form
-        System.out.println(possible.toString());
+        System.out.println(board.toString());
 
         //2// filtrer selon la couleur des pièces
 
