@@ -22,10 +22,7 @@ class Minimax {
 
         Move bestMove;
         int bestMoveScore;
-        //créer tableau de possible boards vide
-
-        //1// get legal moves of the current board --> la fonction renvoit les legal moves pour touuutes les pièces
-
+        ArrayList<Board> possibleBoards = new ArrayList<Board>();
 
         //print the chessboard in a human-readable form
         System.out.println(board.toString());
@@ -36,26 +33,18 @@ class Minimax {
 
         //on applique tous les legal moves au board possible qui devient board t+1
         for (Move move : moves) {
-            System.out.println("piece moving is : " + board.getPiece(move.getFrom()));
-/*
+            Board newBoard = board.clone();
 
-            System.out.println("side of the piece moving :");
-            System.out.println(board.getPiece(move.getTo()).getPieceSide());*/
+            System.out.println("piece moving is : " + newBoard.getPiece(move.getFrom()));
+            System.out.print("side of the piece moving : ");
+            System.out.println(newBoard.getPiece(move.getFrom()).getPieceSide());
 
-            board.doMove(move);
-            //créer le board avec cette disposition
-            //le stocker dans tableau de boards
-            //UNDOOO le move
-            board.undoMove();
+            newBoard.doMove(move);
+
+            //print the chessboard in a human-readable form
+            System.out.println("New possible board is : " + newBoard.toString());
+            possibleBoards.add(newBoard);
         }
-
-        //print the chessboard in a human-readable form
-        System.out.println(board.toString());
-
-        //2// filtrer selon la couleur des pièces
-
-        //3// les stocker dans possible boards --> chaque itération sur 1 pièce de la bonne couleur donne un possible board
-        // avec le move de la pièce
 
         //4// appel de la fonction récursive evaluate position sur tous les possible board collecter
 
@@ -66,7 +55,23 @@ class Minimax {
         return moves.get(0);
     }
 
-    int evaluatePosition(Board board){
+
+    //fonction récursive qui permet de créer l'arbre et d'évaluer le meilleur move
+    public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color){
+        System.out.println("Evaluation en cours...");
+
+
+        // condition d'arret
+        if (depth == 0){
+            //appel de la fonction d'évaluation du board
+        }
+
+        return 0;
+    }
+
+
+
+        int evaluateBoard(Board board){
         /*
         Etudie le score potentiel de chacun des joueurs selon les pièces qu'il prend à l'autre
         En se focalisant sur le score de l'IA (les whites), s'il prend une pièce noire son score augmente
