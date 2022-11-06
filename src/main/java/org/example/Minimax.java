@@ -71,20 +71,22 @@ class Minimax {
 
 
 
-        int evaluateBoard(Board board){
+        int evaluateMove(Board board){
         /*
         Etudie le score potentiel de chacun des joueurs selon les pièces qu'il prend à l'autre
         En se focalisant sur le score de l'IA (les whites), s'il prend une pièce noire son score augmente
         S'il les blacks prennent des pièces blanches, le score de l'IA diminue
          */
-        int whiteScore = 0;
 
+        int whiteScore = 0;
         //si je suis sur une pièce
         //je récupère la case du board associée
         //puis le type de la pièce qui est sur la case
-        Square square = Square.A1 ; // ca c'est pas bon, mais il faudra faire un boucle for qui parcourt toute la grille
+
+        Square square = Square.A1 ; // ca c'est pas bon, mais il faudra faire une boucle for qui parcourt toute la grille
         Piece piece = board.getPiece(square);
         PieceType pieceType = piece.getPieceType();
+        //Idée 1
         switch (pieceType){
             case PAWN :
                 if(piece.getPieceSide() == Side.BLACK)
@@ -117,6 +119,25 @@ class Minimax {
                 else
                     whiteScore -= 1000;
         }
+
+
+            /*
+            Ou bien, je récupère d'abord le side qui est en train de jouer
+            Et après on se focalise que sur les pièces de la couleur opposée.
+             */
+        //Idée 2
+        Side side = Side.WHITE ;//c'est aribtraire pour le moment
+
+            if (side == Side.WHITE) {
+                if (piece.getPieceSide() == Side.BLACK ){
+                    //faire le switch case pour voir le type de la pièce et les pts associés
+                }
+            }
+            else{
+                if (piece.getPieceSide() == Side.WHITE ){
+                    //faire le switch case pour voir le type de la pièce et les pts associés
+                }
+            }
 
         return whiteScore;
     }
