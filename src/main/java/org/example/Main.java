@@ -15,7 +15,7 @@ public class Main {
         Board board = new Board();
 
 
-        Minimax IA = new Minimax(depth);
+        Minimax IA = new Minimax();
         IA.minimax(board);
 
     }

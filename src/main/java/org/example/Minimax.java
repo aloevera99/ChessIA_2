@@ -7,15 +7,8 @@ import java.util.*;
 
 class Minimax {
 
-    int depth;
-    boolean color; //false means the AI is black, true means it is white
-
-
-    ArrayList<Board> possileBoards = new ArrayList<Board>();
-
-    Minimax(int d) {
-        depth = d;
-    }
+    private static final int DEPTH = 1;
+    Side IA_Side; //false means the AI is black, true means it is white
 
     //minmax algo that returns the best move to make according to the color set in attributes
     Move minimax(Board board){
@@ -45,31 +38,54 @@ class Minimax {
             System.out.println("New possible board is : " + newBoard.toString());
             possibleBoards.add(newBoard);
         }
-
-        //4// appel de la fonction récursive evaluate position sur tous les possible board collecter
-
-        //5// puis récursivement, la fonction va parcourir les board possible avec une profondeur depth (depth appels)
-
-        //6// puis meilleur évaluation renvoit meilleur move à la fonction minimax
+        //initializes bestMove to the first move in the
+        bestMove = moves.get(0);
+        bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH);
 
         return moves.get(0);
     }
 
-
     //fonction récursive qui permet de créer l'arbre et d'évaluer le meilleur move
-    public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean color){
+    public int evaluatePosition(Board b, int alpha, int beta, int depth){
         System.out.println("Evaluation en cours...");
-
 
         // condition d'arret
         if (depth == 0){
             //appel de la fonction d'évaluation du board
+            int eval = evaluateBoard(b);
+            System.out.println("L'evaluation est de : " + eval);
+            return eval;
         }
 
-        return 0;
+        if (b.getSideToMove() != IA_Side) { //minimizing
+            //on récupère les legal moves du board à t
+            List<Move> moves = b.legalMoves();
+            int newBeta = beta;
+            for(Move move : moves){ //for child in node
+                System.out.println("Move to be evaluated: " + move.toString());
+                Board nextBoard = b.clone();
+                nextBoard.doMove(move);
+                newBeta = Math.min(newBeta, evaluatePosition(nextBoard, alpha, beta, depth -1)); //think about how to change moves
+                if(newBeta <= alpha) break;
+            }
+            return newBeta; //returns the highest score of the possible moves
+        }
+        else { //maximizing
+            //on récupère les legal moves du board à t
+            List<Move> moves = b.legalMoves();
+            int newAlpha = alpha;
+
+            for(Move move : moves){ //for child in node
+                System.out.println("Move to be evaluated: " + move.toString());
+                Board nextBoard = b.clone();
+                nextBoard.doMove(move);
+                newAlpha = Math.max(newAlpha, evaluatePosition(nextBoard, alpha, beta, depth -1)); //think about how to change moves
+                if(beta<= newAlpha) break;
+            }
+            return newAlpha; //returns the highest score of the possible moves
+        }
+
     }
-
-
 
         int evaluateBoard(Board board){
         /*
