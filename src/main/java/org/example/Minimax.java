@@ -102,49 +102,54 @@ class Minimax {
         //si je suis sur une pièce
         //je récupère la case du board associée
         //puis le type de la pièce qui est sur la case
+        // s'intéresser à la fonction allSquares (de la classes Square).
+            //ou au square.value()
+            // ou au getEnPassant
 
-        Square square = Square.A1 ; // ca c'est pas bon, mais il faudra faire une boucle for qui parcourt toute la grille
-        Piece piece = board.getPiece(square);
-        PieceType pieceType = piece.getPieceType();
-        //Idée 1
-        switch (pieceType){
-            case PAWN :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 10;
-                else
-                    whiteScore -= 10;
-            case KNIGHT :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 40;
-                else
-                    whiteScore -= 40;
-            case BISHOP :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 40;
-                else
-                    whiteScore -= 40;
-            case ROOK :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 60;
-                else
-                    whiteScore -= 60;
-            case QUEEN :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 100;
-                else
-                    whiteScore -= 100;
-            case KING :
-                if(piece.getPieceSide() == Side.BLACK)
-                    whiteScore += 1000;
-                else
-                    whiteScore -= 1000;
+        Square square= board.getEnPassant();
+            System.out.println(square.value());
+            Piece piece = Piece.NONE;
+        if(square.value() != "None") {
+            piece = board.getPiece(square);
+            PieceType pieceType = piece.getPieceType();
+            //Idée 1
+            switch (pieceType) {
+                case PAWN:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 10;
+                    else
+                        whiteScore -= 10;
+                case KNIGHT:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 40;
+                    else
+                        whiteScore -= 40;
+                case BISHOP:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 40;
+                    else
+                        whiteScore -= 40;
+                case ROOK:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 60;
+                    else
+                        whiteScore -= 60;
+                case QUEEN:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 100;
+                    else
+                        whiteScore -= 100;
+                case KING:
+                    if (piece.getPieceSide() == Side.BLACK)
+                        whiteScore += 1000;
+                    else
+                        whiteScore -= 1000;
+            }
         }
-
-
             /*
             Ou bien, je récupère d'abord le side qui est en train de jouer
             Et après on se focalise que sur les pièces de la couleur opposée.
-             */
+
         //Idée 2
         Side side = Side.WHITE ;//c'est aribtraire pour le moment
 
@@ -158,6 +163,8 @@ class Minimax {
                     //faire le switch case pour voir le type de la pièce et les pts associés
                 }
             }
+
+             */
 
         return whiteScore;
     }
