@@ -5,10 +5,11 @@ import com.github.bhlangonijr.chesslib.move.Move;
 
 import java.util.*;
 
+
 class Minimax {
 
     private static final int DEPTH = 1;
-    Side IA_Side; //false means the AI is black, true means it is white
+    Side IA_Side = Side.WHITE; //false means the AI is black, true means it is white
 
     //minmax algo that returns the best move to make according to the color set in attributes
     Move minimax(Board board){
@@ -52,8 +53,9 @@ class Minimax {
         // condition d'arret
         if (depth == 0){
             //appel de la fonction d'évaluation du board
+            System.out.println("L'evaluation est de : ");
             int eval = evaluateMove(b);
-            System.out.println("L'evaluation est de : " + eval);
+            System.out.println(eval);
             return eval;
         }
 
@@ -93,57 +95,55 @@ class Minimax {
         int evaluateMove(Board board){
 
         int IAScore = 0;
-        
-        Side IASide;
-        if (IA_Side.equals(true)){
-            IASide=Side.WHITE;
-        }
-        else {
-            IASide=Side.BLACK;
-        }
 
-        Square square= board.getEnPassant();
-        //trouver un truc qui permet de parcourir tous les squares
-            // s'intéresser à la fonction allSquares (de la classes Square).
-            //ou au square.value()
-            // ou au getEnPassant
-            System.out.println(square.value());
-            Piece piece = Piece.NONE;
-        if(square.value() != "None") {
-            piece = board.getPiece(square);
+        Square square = Square.A1;
+
+        for (int i = 0; i < 64; i++){
+            Piece piece = null;
+            Square curr = square.squareAt(i);
+            System.out.println();
+            piece = board.getPiece(curr);
             PieceType pieceType = piece.getPieceType();
-            //Idée 1
-            switch (pieceType) {
-                case PAWN:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 10;
-                    else
-                        IAScore -= 10;
-                case KNIGHT:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 40;
-                    else
-                        IAScore -= 40;
-                case BISHOP:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 40;
-                    else
-                        IAScore -= 40;
-                case ROOK:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 60;
-                    else
-                        IAScore -= 60;
-                case QUEEN:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 100;
-                    else
-                        IAScore -= 100;
-                case KING:
-                    if (piece.getPieceSide() == IASide)
-                        IAScore += 1000;
-                    else
-                        IAScore -= 1000;
+
+
+            if(piece != Piece.NONE) {
+                System.out.println(curr);
+                System.out.println(piece);
+                System.out.println(pieceType);
+
+                //Idée 1
+                switch (pieceType) {
+                    case PAWN:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 10;
+                        else
+                            IAScore -= 10;
+                    case KNIGHT:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 40;
+                        else
+                            IAScore -= 40;
+                    case BISHOP:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 40;
+                        else
+                            IAScore -= 40;
+                    case ROOK:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 60;
+                        else
+                            IAScore -= 60;
+                    case QUEEN:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 100;
+                        else
+                            IAScore -= 100;
+                    case KING:
+                        if (piece.getPieceSide() == IA_Side)
+                            IAScore += 1000;
+                        else
+                            IAScore -= 1000;
+                }
             }
         }
             /*
@@ -162,9 +162,9 @@ class Minimax {
                 if (piece.getPieceSide() == Side.WHITE ){
                     //faire le switch case pour voir le type de la pièce et les pts associés
                 }
-            }
+            }*/
 
-             */
+
         return IAScore;
     }
 

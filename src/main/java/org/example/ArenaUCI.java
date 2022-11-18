@@ -23,11 +23,7 @@ class ArenaUCI {
             else if ("ucinewgame".equals(inputString)){
                 inputNewGame();
             }
-            else if ("ucinewgame".equals(inputString)){
-                inputNewGame();
-            }
-            else if (inputString.startsWith("position"))
-            {
+            else if (inputString.startsWith("position")) {
                 inputPosition(inputString);
             }
             else if ("go".equals(inputString))
@@ -51,17 +47,17 @@ class ArenaUCI {
         }
 
         public static void inputIsReady() {
-            System.out.println("readyok");
+        System.out.println("readyok");
         }
 
         public static void inputPosition(String input){
-            if (input.contains ("startpos")){
+            if (input.contains("startpos")){
                 //générer le board intial
             }
-            else if (input.contains ("fen")){
+            else if (input.contains("fen")){
             //générer le board actuel
             }
-            else if (input.contains ("moves")){
+            else if (input.contains("moves")){
             //faire le move
                 //parser pour avoir le 3e élément (il peut y avoir plus que 3 éléments?)
                 String moves ;
