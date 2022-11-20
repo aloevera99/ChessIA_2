@@ -163,8 +163,6 @@ class Minimax {
                     //faire le switch case pour voir le type de la pièce et les pts associés
                 }
             }*/
-
-
         return IAScore;
     }
 

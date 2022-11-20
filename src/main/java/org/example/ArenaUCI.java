@@ -1,5 +1,7 @@
 package org.example;
 
+import com.github.bhlangonijr.chesslib.Board;
+
 import java.util.*;
 
 
@@ -47,32 +49,45 @@ class ArenaUCI {
         }
 
         public static void inputIsReady() {
-        System.out.println("readyok");
+            System.out.println("readyok");
         }
 
         public static void inputPosition(String input){
+            input = input.substring(9).concat("");
             if (input.contains("startpos")){
-                //générer le board intial
+                input= input.substring(9); //remove the word "position"
+                Board board = new Board(); //generate intial board / pas la bonne instruction je pense
+
             }
             else if (input.contains("fen")){
+                // j'ai pqs trop compris ce qu'il se passe la
             //générer le board actuel
             }
             else if (input.contains("moves")){
-            //faire le move
-                //parser pour avoir le 3e élément (il peut y avoir plus que 3 éléments?)
+                input = input.substring(input.indexOf("moves")+6); // remove the word "moves"
+                // in order to get the string of the position in which to move
+                while (input != ""){
                 String moves ;
-                //checker la couleur
-                //faire le move en conséquence (vérifier la notation du truc)
 
+                //récupérer les deux premiers caracteres et les mettre dans dep
+                // récupérer les deux caracteres suivants et les mettre dans arr
+                // faire le move -> Move (dep,arr);
+
+                //checker la couleur
+                    //if IA, faire le move de l'IA
+                    // else if JOUEUR, faire le move du joueur
+                //faire le move en conséquence
+                }
             }
         }
         public static void inputNewGame(){
-            //génération d'un board
+            Board board = new Board(); // generate new Board for a new game
+            // remettre l'engine a zéro -> normalement c'est ok
         }
         public static void inputGo(){
-        //search for the best move
-
+            //IA.minimax(board); //search for the best move
         }
+
        /*
        //pas sûr que ce soit utile
        public static void inputPrint(){
