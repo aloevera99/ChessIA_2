@@ -86,18 +86,13 @@ class Minimax {
             }
             return newAlpha; //returns the highest score of the possible moves
         }
-
     }
+    int evaluateMove(Board board){
 
-
-
-
-        int evaluateMove(Board board){
-
+        // Initialisation
         int IAScore = 0;
-
         Square square = Square.A1;
-
+        //Parcours du board
         for (int i = 0; i < 64; i++){
             Piece piece = null;
             Square curr = square.squareAt(i);
@@ -105,13 +100,11 @@ class Minimax {
             piece = board.getPiece(curr);
             PieceType pieceType = piece.getPieceType();
 
-
             if(piece != Piece.NONE) {
                 System.out.println(curr);
                 System.out.println(piece);
                 System.out.println(pieceType);
-
-                //Idée 1
+                //Attribution de points selon le type de la pièce
                 switch (pieceType) {
                     case PAWN:
                         if (piece.getPieceSide() == IA_Side)
@@ -146,23 +139,6 @@ class Minimax {
                 }
             }
         }
-            /*
-            Ou bien, je récupère d'abord le side qui est en train de jouer
-            Et après on se focalise que sur les pièces de la couleur opposée.
-
-        //Idée 2
-        Side side = Side.WHITE ;//c'est aribtraire pour le moment
-
-            if (side == Side.WHITE) {
-                if (piece.getPieceSide() == Side.BLACK ){
-                    //faire le switch case pour voir le type de la pièce et les pts associés
-                }
-            }
-            else{
-                if (piece.getPieceSide() == Side.WHITE ){
-                    //faire le switch case pour voir le type de la pièce et les pts associés
-                }
-            }*/
         return IAScore;
     }
 
