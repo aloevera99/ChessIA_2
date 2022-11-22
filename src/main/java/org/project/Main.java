@@ -12,7 +12,6 @@ public class Main {
         // Creates a new chessboard in the standard initial position
         Board board = new Board();
 
-
         Minimax IA = new Minimax();
         IA.minimax(board);
 

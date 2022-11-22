@@ -1,8 +1,12 @@
 package org.project;
 
 import com.github.bhlangonijr.chesslib.*;
+<<<<<<< Updated upstream
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveList;
+=======
+
+>>>>>>> Stashed changes
 
 import java.util.*;
 
@@ -75,8 +79,13 @@ class ArenaUCI {
             // remettre l'engine a zéro
         }
         public static void inputGo(){
+<<<<<<< Updated upstream
             Move bestmove = IA.minimax(board); //search for the best move
             System.out.println("bestmove" + bestmove);
+=======
+
+            //IA.minimax(board); //search for the best move
+>>>>>>> Stashed changes
         }
 
        /*

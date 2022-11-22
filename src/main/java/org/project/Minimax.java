@@ -12,7 +12,7 @@ class Minimax {
     Side IA_Side = Side.WHITE; //false means the AI is black, true means it is white
 
     //minmax algo that returns the best move to make according to the color set in attributes
-    Move minimax(Board board){
+    Move minimax(Board board) {
 
         Move bestMove;
         int bestMoveScore;
@@ -43,7 +43,21 @@ class Minimax {
         bestMove = moves.get(0);
         bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH);
 
-        return moves.get(0);
+
+        //call evaluateposition on each move
+        //keep track of the move with the best score
+        for (int i = 1; i < possibleBoards.size(); i++) {
+            System.out.println("Evaluating move: " + moves.get(i).toString());
+
+            int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH);
+            if (j >= bestMoveScore) {
+                bestMove = moves.get(i);
+                bestMoveScore = j;
+            }
+            System.out.println(bestMove.toString());
+        }
+        return bestMove; //doMove performs the move on the original board and returns a string of that move
+
     }
 
     //fonction récursive qui permet de créer l'arbre et d'évaluer le meilleur move
