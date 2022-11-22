@@ -1,6 +1,7 @@
 package org.project;
 
 import com.github.bhlangonijr.chesslib.Board;
+import com.github.bhlangonijr.chesslib.move.MoveList;
 
 import java.util.*;
 
@@ -8,7 +9,6 @@ import java.util.*;
 class ArenaUCI {
     static String ENGINENAME = "ChessIA";
     public static void ArenaCommunication() {
-
         Scanner input = new Scanner(System.in);
 
         while (true) {
@@ -32,16 +32,17 @@ class ArenaUCI {
             {
                 inputGo();
             }
-           /* else if ("print".equals(inputString))
-            {
-                inputPrint();
-            }*/
             else if ("quit".equals(inputString))
             {
                 break;
             }
+            /* else if ("print".equals(inputString))
+            {
+                inputPrint();
+            }*/
         }
     }
+
         public static void inputUCI() {
             System.out.println("id name "+ ENGINENAME);
             //System.out.println("id author Jonathan");
@@ -54,9 +55,10 @@ class ArenaUCI {
 
         public static void inputPosition(String input){
             input = input.substring(9).concat("");
+            Board board = new Board(); //generate initial board / pas la bonne instruction je pense
+
             if (input.contains("startpos")){
                 input= input.substring(9); //remove the word "position"
-                Board board = new Board(); //generate intial board / pas la bonne instruction je pense
 
             }
             else if (input.contains("fen")){
@@ -66,9 +68,11 @@ class ArenaUCI {
             else if (input.contains("moves")){
                 input = input.substring(input.indexOf("moves")+6); // remove the word "moves"
                 // in order to get the string of the position in which to move
-                while (input != ""){
-                String moves ;
+                MoveList list = new MoveList();
+                list.loadFromSan(input);
+                board.loadFromFen(list.getFen());
 
+                while (input != ""){
                 //récupérer les deux premiers caracteres et les mettre dans dep
                 // récupérer les deux caracteres suivants et les mettre dans arr
                 // faire le move -> Move (dep,arr);
