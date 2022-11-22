@@ -1,4 +1,4 @@
-package org.example;
+package org.project;
 
 import com.github.bhlangonijr.chesslib.*;
 import com.github.bhlangonijr.chesslib.move.Move;
@@ -82,7 +82,7 @@ class Minimax {
                 Board nextBoard = b.clone();
                 nextBoard.doMove(move);
                 newAlpha = Math.max(newAlpha, evaluatePosition(nextBoard, alpha, beta, depth -1)); //think about how to change moves
-                if(beta<= newAlpha) break;
+                if(beta <= newAlpha) break;
             }
             return newAlpha; //returns the highest score of the possible moves
         }

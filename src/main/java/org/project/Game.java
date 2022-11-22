@@ -1,4 +1,4 @@
-package org.example;
+package org.project;
 
 //import com.github.bhlangonijr.chesslib.*;
 //import java.util.*;

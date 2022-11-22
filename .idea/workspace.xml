@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="765a8f3e-bd55-40da-b58f-a39b3746cdeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ArenaUCI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ArenaUCI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Minimax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Minimax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ArenaUCI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/ArenaUCI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Minimax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/project/Minimax.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +44,11 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <option name="MAIN_CLASS_NAME" value="org.project.Main" />
       <module name="ChessIA_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="org.project.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -70,7 +71,8 @@
       <workItem from="1667481386337" duration="26890000" />
       <workItem from="1667938100082" duration="1285000" />
       <workItem from="1668542070874" duration="2297000" />
-      <workItem from="1668713696349" duration="7704000" />
+      <workItem from="1668713696349" duration="8570000" />
+      <workItem from="1669131635620" duration="780000" />
     </task>
     <servers />
   </component>
