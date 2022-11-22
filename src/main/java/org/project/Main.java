@@ -3,6 +3,7 @@ package org.project;
 
 import com.github.bhlangonijr.chesslib.Board;
 
+
 public class Main {
     public static void main(String[] args) {
 
@@ -13,7 +14,9 @@ public class Main {
         Board board = new Board();
 
         Minimax IA = new Minimax();
-        IA.minimax(board);
+
+        ArenaUCI arena = new ArenaUCI(board, IA);
+        arena.ArenaCommunication();
 
     }
 }

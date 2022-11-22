@@ -1,19 +1,24 @@
 package org.project;
 
 import com.github.bhlangonijr.chesslib.*;
-<<<<<<< Updated upstream
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveList;
-=======
-
->>>>>>> Stashed changes
 
 import java.util.*;
 
 
 class ArenaUCI {
+
+    public static Board board;
+    public static Minimax IA;
     static String ENGINENAME = "ChessIA";
-    public static void ArenaCommunication() {
+
+    ArenaUCI(Board b, Minimax ia){
+        board = b;
+        IA = ia;
+    }
+
+    publicpo void ArenaCommunication() {
         Scanner input = new Scanner(System.in);
 
         while (true) {
@@ -79,15 +84,9 @@ class ArenaUCI {
             // remettre l'engine a zéro
         }
         public static void inputGo(){
-<<<<<<< Updated upstream
             Move bestmove = IA.minimax(board); //search for the best move
             System.out.println("bestmove" + bestmove);
-=======
-
-            //IA.minimax(board); //search for the best move
->>>>>>> Stashed changes
         }
-
        /*
        //pas sûr que ce soit utile
        public static void inputPrint(){
