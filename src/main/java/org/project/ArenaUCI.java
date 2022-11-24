@@ -12,13 +12,14 @@ class ArenaUCI {
     public static Board board;
     public static Minimax IA;
     static String ENGINENAME = "ChessIA";
+    static String AUTHORNAME = "louNju";
 
     ArenaUCI(Board b, Minimax ia){
         board = b;
         IA = ia;
     }
 
-    publicpo void ArenaCommunication() {
+    public void ArenaCommunication() {
         Scanner input = new Scanner(System.in);
 
         while (true) {
@@ -55,7 +56,7 @@ class ArenaUCI {
 
         public static void inputUCI() {
             System.out.println("id name "+ ENGINENAME);
-            //System.out.println("id author Jonathan");
+            System.out.println("id author" + AUTHORNAME);
             System.out.println("uciok");
         }
         public static void inputIsReady() {
