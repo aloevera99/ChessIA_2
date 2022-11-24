@@ -86,7 +86,7 @@ class ArenaUCI {
         }
         public static void inputGo(){
             Move bestmove = IA.minimax(board); //search for the best move
-            System.out.println("bestmove" + bestmove);
+            System.out.println("bestmove " + bestmove);
         }
        /*
        //pas sûr que ce soit utile
