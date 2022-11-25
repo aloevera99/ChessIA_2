@@ -69,7 +69,7 @@ class ArenaUCI {
             input = input.substring(9).concat("");
 
             if (input.contains("startpos")){
-                input= input.substring(9); //remove the word "position"
+                input= input.substring(7); //remove the word "position"
             }
             else if (input.contains("fen")){
                 // On a besoin de ca ?
