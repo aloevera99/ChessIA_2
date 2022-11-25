@@ -23,12 +23,14 @@ class ArenaUCI {
         Scanner input = new Scanner(System.in);
 
         while (true) {
+
             //boucle infinie qui dure tant que l'engine est lancé
             // on récupère l'input puis on en fait une String
             String inputString = input.nextLine();
 
             if ("uci".equals(inputString)) {
                 inputUCI();
+                System.out.println("Je suis dans UCI");
             }
             else if ("isready".equals(inputString)){
                 inputIsReady();
