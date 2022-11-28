@@ -41,13 +41,16 @@ class ArenaUCI {
             else if (inputString.startsWith("position")) {
                 inputPosition(inputString);
             }
-            else if ("go".equals(inputString))
+            else if (inputString.contains("go"))
             {
                 inputGo();
             }
             else if ("quit".equals(inputString))
             {
                 break;
+            }
+            else if ("evaluate".equals(inputString)) {
+                inputEvaluate();
             }
             /* else if ("print".equals(inputString))
             {
@@ -57,24 +60,24 @@ class ArenaUCI {
     }
 
         public static void inputUCI() {
-            System.out.println("id name "+ ENGINENAME);
-            System.out.println("id author" + AUTHORNAME);
+            System.out.println("id name " + ENGINENAME);
+            System.out.println("id author " + AUTHORNAME);
             System.out.println("uciok");
         }
         public static void inputIsReady() {
             System.out.println("readyok");
         }
 
-        public static void inputPosition(String input){
+        public static void inputPosition(String input) {
             input = input.substring(9).concat("");
 
-            if (input.contains("startpos")){
+            if (input.contains("startpos")) {
                 input= input.substring(7); //remove the word "position"
             }
             else if (input.contains("fen")){
                 // On a besoin de ca ?
             }
-            else if (input.contains("moves")){
+            if (input.contains("moves")){
                 input = input.substring(input.indexOf("moves")+6); // remove the word "moves"
                 // in order to get the string of the position in which to move
                 MoveList list = new MoveList();
@@ -83,7 +86,7 @@ class ArenaUCI {
             }
         }
         public static void inputNewGame(){
-            Board board = new Board(); // generate new Board for a new game
+            board = new Board(); // generate new Board for a new game
             // remettre l'engine a zéro
         }
         public static void inputGo(){
@@ -94,4 +97,8 @@ class ArenaUCI {
        //pas sûr que ce soit utile
        public static void inputPrint(){
         }*/
+    public static void inputEvaluate(){
+        int eval = Minimax.evaluateMove(board, 90000);
+        System.out.println("eval : " + eval);
+    }
 }
