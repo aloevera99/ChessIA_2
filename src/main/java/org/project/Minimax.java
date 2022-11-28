@@ -75,8 +75,7 @@ class Minimax {
             20,  30,  10,   0,   0,  10,  30,  20
     };
     private static final int DEPTH = 3;
-    public static final int KING_VALUE = 90000;
-    Side IA_Side = Side.WHITE; //false means the AI is black, true means it is white
+    public static final int KING_VALUE = 10000;
 
     //minmax algo that returns the best move to make according to the color set in attributes
     Move minimax(Board board) {
@@ -97,14 +96,14 @@ class Minimax {
         }
         //initializes bestMove to the first move in the
         bestMove = moves.get(0);
-        bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH);
+        bestMoveScore = evaluatePosition(possibleBoards.get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, true);
 
 
         //call evaluateposition on each move
         //keep track of the move with the best score
         for (int i = 1; i < possibleBoards.size(); i++) {
 
-            int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH);
+            int j = evaluatePosition(possibleBoards.get(i), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, true);
             if (j >= bestMoveScore) {
                 bestMove = moves.get(i);
                 bestMoveScore = j;
@@ -115,7 +114,7 @@ class Minimax {
     }
 
     //fonction récursive qui permet de créer l'arbre et d'évaluer le meilleur move
-    public int evaluatePosition(Board b, int alpha, int beta, int depth){
+    public int evaluatePosition(Board b, int alpha, int beta, int depth, boolean isMinimizimg){
 
         // condition d'arret
         if (depth == 0){
@@ -124,14 +123,14 @@ class Minimax {
             return eval;
         }
 
-        if (b.getSideToMove() != IA_Side) { //minimizing
+        if (isMinimizimg) { //minimizing
             //on récupère les legal moves du board à t
             List<Move> moves = b.legalMoves();
             int newBeta = beta;
             for(Move move : moves){ //for child in node
                 Board nextBoard = b.clone();
                 nextBoard.doMove(move);
-                newBeta = Math.min(newBeta, evaluatePosition(nextBoard, alpha, beta, depth -1)); //think about how to change moves
+                newBeta = Math.min(newBeta, evaluatePosition(nextBoard, alpha, beta, depth -1, false)); //think about how to change moves
                 if(newBeta <= alpha) break;
             }
             return newBeta; //returns the highest score of the possible moves
@@ -144,7 +143,7 @@ class Minimax {
             for(Move move : moves){ //for child in node
                 Board nextBoard = b.clone();
                 nextBoard.doMove(move);
-                newAlpha = Math.max(newAlpha, evaluatePosition(nextBoard, alpha, beta, depth -1)); //think about how to change moves
+                newAlpha = Math.max(newAlpha, evaluatePosition(nextBoard, alpha, beta, depth -1, true)); //think about how to change moves
                 if(beta <= newAlpha) break;
             }
             return newAlpha; //returns the highest score of the possible moves
@@ -184,34 +183,88 @@ class Minimax {
 
                         break;
                     case KNIGHT:
-                        if (piece.getPieceSide() == IA_Side)
-                            IAScore += 400;
-                        else
-                            IAScore -= 400;
+                        if (piece.getPieceSide() == IA_Side) {
+                            IAScore += 300;
+                            if (IA_Side == Side.WHITE)
+                                IAScore += KNIGHT_PST[63 - i];
+                            else // noir
+                                IAScore += KNIGHT_PST[i];
+                        }
+                        else {
+                        IAScore -= 300;
+                        if (IA_Side == Side.WHITE)
+                            IAScore -= KNIGHT_PST[63 - i];
+                        else // noir
+                            IAScore -= KNIGHT_PST[i];
+                    }
                         break;
                     case BISHOP:
-                        if (piece.getPieceSide() == IA_Side)
-                            IAScore += 400;
-                        else
-                            IAScore -= 400;
+                        if (piece.getPieceSide() == IA_Side) {
+                            IAScore += 350;
+                            if (IA_Side == Side.WHITE)
+                                IAScore += BISHOP_PST[63 - i];
+                            else // noir
+                                IAScore += BISHOP_PST[i];
+                        }
+                        else {
+                            IAScore -= 350;
+
+                            if (IA_Side == Side.WHITE)
+                                IAScore -= BISHOP_PST[63 - i];
+                            else // noir
+                                IAScore -= BISHOP_PST[i];
+                        }
                         break;
                     case ROOK:
-                        if (piece.getPieceSide() == IA_Side)
-                            IAScore += 600;
-                        else
-                            IAScore -= 600;
+                        if (piece.getPieceSide() == IA_Side) {
+                            IAScore += 500;
+
+                            if (IA_Side == Side.WHITE)
+                                IAScore += ROOK_PST[63 - i];
+                            else // noir
+                                IAScore += ROOK_PST[i];
+                        }
+                        else {
+                            IAScore -= 500;
+
+                            if (IA_Side == Side.WHITE)
+                                IAScore -= ROOK_PST[63 - i];
+                            else // noir
+                                IAScore -= ROOK_PST[i];
+                        }
                         break;
                     case QUEEN:
-                        if (piece.getPieceSide() == IA_Side)
+                        if (piece.getPieceSide() == IA_Side) {
                             IAScore += 1000;
-                        else
+
+                            if (IA_Side == Side.WHITE)
+                                IAScore += QUEEN_PST[63 - i];
+                            else // noir
+                                IAScore += QUEEN_PST[i];
+                        }
+                        else {
                             IAScore -= 1000;
+                            if (IA_Side == Side.WHITE)
+                                IAScore -= QUEEN_PST[63 - i];
+                            else // noir
+                                IAScore -= QUEEN_PST[i];
+                        }
                         break;
                     case KING:
-                        if (piece.getPieceSide() == IA_Side)
+                        if (piece.getPieceSide() == IA_Side) {
                             IAScore += KING_VALUE;
-                        else
+                            if (IA_Side == Side.WHITE)
+                                IAScore += KING_PST[63 - i];
+                            else // noir
+                                IAScore += KING_PST[i];
+                        }
+                        else {
                             IAScore -= KING_VALUE;
+                            if (IA_Side == Side.WHITE)
+                                IAScore -= KING_PST[63 - i];
+                            else // noir
+                                IAScore -= KING_PST[i];
+                        }
                         break;
                 }
             }

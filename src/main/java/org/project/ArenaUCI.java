@@ -98,7 +98,7 @@ class ArenaUCI {
        public static void inputPrint(){
         }*/
     public static void inputEvaluate(){
-        int eval = Minimax.evaluateMove(board, 90000);
+        int eval = Minimax.evaluateMove(board);
         System.out.println("eval : " + eval);
     }
 }
