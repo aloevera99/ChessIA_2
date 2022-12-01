@@ -76,6 +76,11 @@ class Minimax {
     };
     private static final int DEPTH = 3;
     public static final int KING_VALUE = 10000;
+    public static final int QUEEN_VALUE = 1000;
+    public static final int ROOK_VALUE = 500;
+    public static final int BISHOP_VALUE = 350;
+    public static final int KNIGHT_VALUE = 300;
+    public static final int PAWN_VALUE = 100;
 
     //minmax algo that returns the best move to make according to the color set in attributes
     Move minimax(Board board) {
@@ -167,14 +172,14 @@ class Minimax {
                 switch (pieceType) {
                     case PAWN:
                         if (piece.getPieceSide() == IA_Side) {
-                            IAScore += 100;
+                            IAScore += PAWN_VALUE;
                             if (IA_Side == Side.WHITE)
                                 IAScore += PAWN_PST[63 - i];
                             else // noir
                                 IAScore += PAWN_PST[i];
                         }
                         else {
-                            IAScore -= 100;
+                            IAScore -= PAWN_VALUE;
                             if (IA_Side == Side.WHITE)
                                 IAScore -= PAWN_PST[i];
                             else // noir
@@ -184,14 +189,14 @@ class Minimax {
                         break;
                     case KNIGHT:
                         if (piece.getPieceSide() == IA_Side) {
-                            IAScore += 300;
+                            IAScore += KNIGHT_VALUE;
                             if (IA_Side == Side.WHITE)
                                 IAScore += KNIGHT_PST[63 - i];
                             else // noir
                                 IAScore += KNIGHT_PST[i];
                         }
                         else {
-                        IAScore -= 300;
+                        IAScore -= KNIGHT_VALUE;
                         if (IA_Side == Side.WHITE)
                             IAScore -= KNIGHT_PST[63 - i];
                         else // noir
@@ -200,14 +205,14 @@ class Minimax {
                         break;
                     case BISHOP:
                         if (piece.getPieceSide() == IA_Side) {
-                            IAScore += 350;
+                            IAScore += BISHOP_VALUE;
                             if (IA_Side == Side.WHITE)
                                 IAScore += BISHOP_PST[63 - i];
                             else // noir
                                 IAScore += BISHOP_PST[i];
                         }
                         else {
-                            IAScore -= 350;
+                            IAScore -= BISHOP_VALUE;
 
                             if (IA_Side == Side.WHITE)
                                 IAScore -= BISHOP_PST[63 - i];
@@ -217,7 +222,7 @@ class Minimax {
                         break;
                     case ROOK:
                         if (piece.getPieceSide() == IA_Side) {
-                            IAScore += 500;
+                            IAScore += ROOK_VALUE;
 
                             if (IA_Side == Side.WHITE)
                                 IAScore += ROOK_PST[63 - i];
@@ -225,7 +230,7 @@ class Minimax {
                                 IAScore += ROOK_PST[i];
                         }
                         else {
-                            IAScore -= 500;
+                            IAScore -= ROOK_VALUE;
 
                             if (IA_Side == Side.WHITE)
                                 IAScore -= ROOK_PST[63 - i];
@@ -235,7 +240,7 @@ class Minimax {
                         break;
                     case QUEEN:
                         if (piece.getPieceSide() == IA_Side) {
-                            IAScore += 1000;
+                            IAScore += QUEEN_VALUE;
 
                             if (IA_Side == Side.WHITE)
                                 IAScore += QUEEN_PST[63 - i];
@@ -243,7 +248,7 @@ class Minimax {
                                 IAScore += QUEEN_PST[i];
                         }
                         else {
-                            IAScore -= 1000;
+                            IAScore -= QUEEN_VALUE;
                             if (IA_Side == Side.WHITE)
                                 IAScore -= QUEEN_PST[63 - i];
                             else // noir

@@ -30,7 +30,6 @@ class ArenaUCI {
 
             if ("uci".equals(inputString)) {
                 inputUCI();
-                System.out.println("Je suis dans UCI");
             }
             else if ("isready".equals(inputString)){
                 inputIsReady();
